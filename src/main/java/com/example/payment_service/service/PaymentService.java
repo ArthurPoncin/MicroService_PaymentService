@@ -18,8 +18,7 @@ public class PaymentService {
     }
 
     // Créer un paiement
-    public Payment createPayment(Long registrationId) {
-        Payment payment = new Payment(registrationId);
+    public Payment createPayment(Payment payment) {
         return repository.save(payment);
     }
 

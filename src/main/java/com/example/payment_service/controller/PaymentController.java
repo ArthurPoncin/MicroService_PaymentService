@@ -18,9 +18,9 @@ public class PaymentController {
     }
 
     // Créer un paiement
-    @PostMapping("/{registrationId}")
-    public Payment createPayment(@PathVariable Long registrationId) {
-        return service.createPayment(registrationId);
+    @PostMapping
+    public Payment createPayment(@RequestBody Payment payment) {
+        return service.createPayment(payment);
     }
 
     // Récupérer un paiement

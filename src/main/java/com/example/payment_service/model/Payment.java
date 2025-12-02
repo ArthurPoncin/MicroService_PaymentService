@@ -35,10 +35,6 @@ public class Payment {
         this.reference = reference;
     }
 
-    public Payment(Long registrationId) {
-        this.registrationId = registrationId;
-    }
-
     public Long getId() {
         return id;
     }
