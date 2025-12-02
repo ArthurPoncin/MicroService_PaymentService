@@ -1,4 +1,4 @@
-package com.example.payment_service;
+package com.example.payment_service.Unitaires;
 
 import com.example.payment_service.service.PaymentService;
 import org.junit.jupiter.api.Test;
