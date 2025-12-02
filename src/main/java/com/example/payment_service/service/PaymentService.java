@@ -1,5 +1,6 @@
 package com.example.payment_service.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +40,11 @@ public class PaymentService {
         payment.setStatut("SUCCESS");
         payment.setReference("BANK-" + System.currentTimeMillis());
         return repository.save(payment);
+    }
+
+    // Calcul de la TVA
+    public BigDecimal calculerMontantTotal(BigDecimal montantHT, BigDecimal tauxTVA) {
+        BigDecimal montantTaxe = montantHT.multiply(tauxTVA);
+        return montantHT.add(montantTaxe);
     }
 }
