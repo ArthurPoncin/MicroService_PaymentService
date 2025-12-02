@@ -46,4 +46,8 @@ public class PaymentService {
         BigDecimal montantTaxe = montantHT.multiply(tauxTVA);
         return montantHT.add(montantTaxe);
     }
+
+    public List<Payment> getAllPayments() {
+        return repository.findAll();
+    }
 }

@@ -17,6 +17,8 @@ import java.math.BigDecimal;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
@@ -51,4 +53,26 @@ public class PaymentControllerTest {
                 .andExpect(jsonPath("$.registrationId").value(102L));
     }
 
+    @Test
+    void shouldGetPaymentById() throws Exception {
+        when(service.getPayment(102L)).thenReturn(testPayment);
+
+        mockMvc.perform(get("/payments/102")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.devise").value("EUR"))
+                .andExpect(jsonPath("$.statut").value("Pending"));
+    }
+
+    @Test
+    void shouldValidatePayment() throws Exception {
+        Payment paymentValide = new Payment(102L, new BigDecimal("1440.0"), "EUR", "SUCCESS", "Ref-Valid-123");
+
+        when(service.validatePayment(102L)).thenReturn(paymentValide);
+
+        mockMvc.perform(put("/payments/102/validate")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.statut").value("SUCCESS"));
+    }
 }

@@ -41,4 +41,9 @@ public class PaymentController {
         return service.validatePayment(id);
     }
 
+    @GetMapping
+    public List<Payment> getAllPayments() {
+        return service.getAllPayments();
+    }
+
 }
