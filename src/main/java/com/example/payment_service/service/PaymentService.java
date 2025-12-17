@@ -19,6 +19,10 @@ public class PaymentService {
 
     // Créer un paiement
     public Payment createPayment(Payment payment) {
+        if (payment.getStatut() == null) {
+            payment.setStatut("PENDING");
+        }
+
         return repository.save(payment);
     }
 
