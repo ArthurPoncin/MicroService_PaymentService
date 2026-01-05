@@ -24,6 +24,8 @@ public class Payment {
 
     private String reference;
 
+    private String paymentMethod;
+
     public Payment() {
     }
 
@@ -59,6 +61,10 @@ public class Payment {
         return reference;
     }
 
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -83,4 +89,7 @@ public class Payment {
         this.reference = reference;
     }
 
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
 }

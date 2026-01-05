@@ -35,15 +35,15 @@ public class PaymentController {
         return service.getPaymentsByRegistration(regId);
     }
 
-    // Valide le paiement
-    @PutMapping("/{id}/validate")
-    public Payment validatePayment(@PathVariable Long id) {
-        return service.validatePayment(id);
-    }
-
     @GetMapping
     public List<Payment> getAllPayments() {
         return service.getAllPayments();
+    }
+
+    // Paiement Stripe ou Paypal
+    @PostMapping("/{id}/process")
+    public Payment processPayment(@PathVariable Long id) {
+        return service.processPayment(id);
     }
 
 }

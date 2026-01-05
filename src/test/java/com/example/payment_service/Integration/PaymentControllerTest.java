@@ -65,12 +65,13 @@ public class PaymentControllerTest {
     }
 
     @Test
-    void shouldValidatePayment() throws Exception {
+    void shouldProcessPayment() throws Exception {
         Payment paymentValide = new Payment(102L, new BigDecimal("1440.0"), "EUR", "SUCCESS", "Ref-Valid-123");
+        paymentValide.setPaymentMethod("STRIPE");
 
-        when(service.validatePayment(102L)).thenReturn(paymentValide);
+        when(service.processPayment(102L)).thenReturn(paymentValide);
 
-        mockMvc.perform(put("/payments/102/validate")
+        mockMvc.perform(post("/payments/102/process")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.statut").value("SUCCESS"));

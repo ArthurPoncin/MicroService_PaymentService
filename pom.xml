@@ -112,6 +112,11 @@
 		<artifactId>junit-platform-suite</artifactId>
 		<scope>test</scope>
 	</dependency>
+	<dependency>
+		<groupId>com.stripe</groupId>
+		<artifactId>stripe-java</artifactId>
+		<version>24.15.0</version>
+	</dependency>
 	</dependencies>
 
 	<build>

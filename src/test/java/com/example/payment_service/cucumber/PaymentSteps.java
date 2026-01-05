@@ -24,13 +24,16 @@ public class PaymentSteps {
 
     @Given("un paiement pour l'inscription {long} avec un montant de {bigdecimal} et la devise {string}")
     public void createPaymentStep(Long registrationId, BigDecimal montant, String devise) {
-        Payment p = new Payment(105L, new BigDecimal("500.0"), "EUR", "PENDING", "REF-TEMP");
+        Payment p = new Payment(registrationId, montant, devise, "PENDING", "REF-TEMP");
+
+        p.setPaymentMethod("STRIPE");
+
         payment = service.createPayment(p);
     }
 
     @When("je valide le paiement")
     public void validatePaymentStep() {
-        payment = service.validatePayment(payment.getId());
+        payment = service.processPayment(payment.getId());
     }
 
     @Then("le statut du paiement doit être {string}")
