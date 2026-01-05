@@ -1,0 +1,6 @@
+services:
+  payment-service:
+    build: .
+    container_name: payment-container
+    ports:
+      - "8081:8081"

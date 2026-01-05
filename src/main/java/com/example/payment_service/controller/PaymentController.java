@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.payment_service.model.Payment;
 import com.example.payment_service.service.PaymentService;
 
+@CrossOrigin(originPatterns = "http://localhost:*")
 @RestController
 @RequestMapping("/payments")
 public class PaymentController {
